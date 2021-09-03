@@ -78,7 +78,7 @@ The lines that look like `this` are commands, run them in your terminal.
 2. Enter the just cloned directory:  
 `cd wine-tkg-git`  
 3. Download the patch file:  
-`curl https://github.com/e666666/robloxWineBuildGuide/raw/main/roblox-staging-patch-v2.patch --output roblox-wine-staging-v2.patch`  
+`curl https://raw.githubusercontent.com/e666666/robloxWineBuildGuide/main/roblox-wine-staging-v2.patch --output roblox-wine-staging-v2.patch`  
 4. Apply the patch **(You must build Wine according to the later steps for the patch to do anything)**:  
 `git apply roblox-wine-staging-v2.patch`  
 5. Change to the deeper folder:  
