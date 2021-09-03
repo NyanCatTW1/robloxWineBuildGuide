@@ -3,9 +3,14 @@
 Also, don't use Kali Linux as your main distro, especially not with the default password.  
 
 ## What is this?  
-This is a guide on how to make Wine run Roblox **with staging patches**  
+This is a guide on how to make Wine run Roblox **with staging patches**, brought to you by `Nyan cat#8349`  
 **It includes the mouse fix, you do not need any other patches.**  
 **It also fixes the black cursor bug in Studio, by reverting the commit that caused the issue.**  
+### Getting in touch
+Check #patch-help in the Grapejuice Discord server, where people like you work on building Wine to play Roblox properly.  
+Invite Link: https://discord.gg/mRTzEb6  
+#### Please do not DM me, I'm currently under heavy schoolwork and the reply will be short if there are any reply at all.  
+
 * [Guide version 25, 2021-08-20 11 AM (UTC+8)](#guide-version-25-2021-08-20-11-am-utc8)
    * [Video guides](#video-guides)
       * [Prebuilt](#prebuilt)
@@ -151,7 +156,7 @@ You just need to install **libvulkan-dev**, and it will work.
 2. **(Debian alike)** Run `gcc --version`, after that, install **gcc-8-multilib**, replace 8 with the version that you got, try different version numbers (Ex. "8.4" and "8.4.0") if the package doesn't exist.
 3. Check the log file at **src/wine-tkg-staging-fsync-git-32-build/config.log** to see what might be wrong.  
 In order to find where stuff went wrong, I usually search for **the error** in the log file.  
-3. If it's still not working, ping me with a message **including your exact distro and the log file**, so I can investigate further.  
+3. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro and the log file**, so we can figure out what's wrong.  
 
 ### If it complains `error: X 32-bit development files not found.`  
 `error: X 32-bit development files not found. Wine will be built without X support, which probably isn't what you want.`  
@@ -162,13 +167,13 @@ Do what it says, and install **libx11-dev:i386** if you're on Debian alike.
 1. Make sure that you followed the **Dependency install** section.
 2. Make sure that you installed **the 32-bit version** of both **GStreamer 1.0 (libgstreamer1.0-dev:i386)** and **GStreamer Plugins Base 1.0 (libgstreamer-plugins-base1.0-dev:i386)**, they are **different** libraries!
 3. Make sure that you installed **GLib (libglib2.0-dev:i386)** 32-bit development files. **It is GLib, not glibc!**
-4. If it's still not working, ping me with a message **including your exact distro**, so I can investigate further
+4. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro**, so we can figure out what's wrong.  
 
 ### If it complains `error: FreeType 32-bit development files not found.`  
 `configure: error: FreeType 32-bit development files not found. Fonts will not be built.`
 1. Make sure that you followed the **Dependency install** section.
 2. Make sure that you installed **FreeType** for 32 bit, it's called **libfreetype-dev:i386** on Debian alike.
-3. If it's still not working, ping me with a message **including your exact distro**, so I can investigate further
+3. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro**, so we can figure out what's wrong.  
 
 ### If it complains `wine client error:0: version mismatch 726/728.`  
 `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly, or you have an older one somewhere in your PATH. Or maybe the wrong wineserver is still running?`  
