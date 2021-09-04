@@ -1,186 +1,209 @@
-# To Pop!_OS/Kali Linux users  
-## Please notice that the distro you are using is not capable of building Wine, due to many conflicts in 32/64 bit packages. You must change distro in order to build Wine.  
-Also, don't use Kali Linux as your main distro, especially not with the default password.  
+# The ultimate Roblox on Linux guide
+This is a guide on building wine-tkg-git for Roblox as well as a couple of workarounds for issues, by `Nyan cat#8349`.
 
-## What is this?  
-This is a guide on how to make Wine run Roblox **with staging patches**, brought to you by `Nyan cat#8349`  
-**It includes the mouse fix, you do not need any other patches.**  
-**It also fixes the black cursor bug in Studio, by reverting the commit that caused the issue.**  
-### Getting in touch
-Check #patch-help in the Grapejuice Discord server, where people like you work on building Wine to play Roblox properly.  
-Invite Link: https://discord.gg/mRTzEb6  
-#### Please do not DM me, I'm currently under heavy schoolwork and the reply will be short if there are any reply at all.  
+It includes the following patches and improvements:
+ - Right-click mouse fix (by applying a patch)
+ - Black cursor studio bug (by reverting the commit that caused it)
 
-* [Guide version 25, 2021-08-20 11 AM (UTC+8)](#guide-version-25-2021-08-20-11-am-utc8)
-   * [Video guides](#video-guides)
-      * [Prebuilt](#prebuilt)
-   * [Dependency install](#dependency-install)
-      * [Arch Linux alike](#arch-linux-alike)
-      * [Debian/Fedora alike](#debianfedora-alike)
-      * [Other distros](#other-distros)
-      * [Notice](#notice)
-   * [Steps to compile](#steps-to-compile)
-      * [After finishing Step 7.2, here is how to use the just built Wine](#after-finishing-step-72-here-is-how-to-use-the-just-built-wine)
-* [Common build problems version 23, 2021-08-20 12 PM](#common-build-problems-version-23-2021-08-20-12-pm)
-   * [If guide version changed during your build, consider starting over.](#if-guide-version-changed-during-your-build-consider-starting-over)
-      * [If it complains ERROR: Patch application has failed](#if-it-complains-error-patch-application-has-failed)
-      * [If Roblox is still acting up (Crash, Mouse bug, etc.)](#if-roblox-is-still-acting-up-crash-mouse-bug-etc)
-         * [If you didn't install globally](#if-you-didnt-install-globally)
-         * [If you installed globally](#if-you-installed-globally)
-      * [If it asks whether to uninstall gst-editing-services](#if-it-asks-whether-to-uninstall-gst-editing-services)
-      * [If it complains ERROR: 'autoreconf -f' failed.](#if-it-complains-error-autoreconf--f-failed)
-      * [If the script is trying to uninstall stuff](#if-the-script-is-trying-to-uninstall-stuff)
-      * [If it complains E: Unable to locate package [Package Name]](#if-it-complains-e-unable-to-locate-package-package-name)
-      * [If it complains Cannot find the [Something] binary.](#if-it-complains-cannot-find-the-something-binary)
-      * [If it complains error: « struct x11drv_thread_data » has no member named « xi2_state »](#if-it-complains-error--struct-x11drv_thread_data--has-no-member-named--xi2_state-)
-      * [If it complains conflicting types for ‘resize_vk_surfaces’](#if-it-complains-conflicting-types-for-resize_vk_surfaces)
-      * [If it complains error: Cannot build a 32-bit program.](#if-it-complains-error-cannot-build-a-32-bit-program)
-      * [If it complains error: X 32-bit development files not found.](#if-it-complains-error-x-32-bit-development-files-not-found)
-      * [If it complains error: gstreamer-1.0 base plugins 32-bit development files not found,](#if-it-complains-error-gstreamer-10-base-plugins-32-bit-development-files-not-found)
-      * [If it complains error: FreeType 32-bit development files not found.](#if-it-complains-error-freetype-32-bit-development-files-not-found)
-      * [If it complains wine client error:0: version mismatch 726/728.](#if-it-complains-wine-client-error0-version-mismatch-726728)
-      * [If it complains Unable to read VR Path Registry](#if-it-complains-unable-to-read-vr-path-registry)
-
-# Guide version 25, 2021-08-20 11 AM (UTC+8)  
-
-## Video guides
-### If you're making a video guide
-**Attach link to this guide in the description + pin comment, please.**  
-Mention of Discord nickname is optional but wanted.  
-Also, if you're making a **Prebuilt** tutorial, **mention that it's a prebuilt that you made.**  
-If you don't comply, you're a bad person.  
-### Prebuilt  
-The video tells you to install a prebuilt, while it is **easier**, it can be **risky** since you have to trust the creator for **not adding malware** to the build.  
-(UPDATED!) How to play Roblox on Linux Ubuntu 20.04 LTS! (WORKING AUGUST 2021, READ DESCRIPTION)  
-https://www.youtube.com/watch?v=xQHBPXsorxU  
-
-## Dependency install  
-### Arch Linux alike  
-Makepkg will do it for you, you don't need to install them yourself.  
-### Debian/Fedora alike  
-On step 6, change **_nomakepkg_dep_resolution_distro** to `debuntu` or `fedora` according to your distro.  
-You should also run `sudo dpkg --add-architecture i386 && sudo apt update` if you're using **Debian alike**.    
-### Other distros  
-Install manually, check https://wiki.winehq.org/Building_Wine#Satisfying_Build_Dependencies  
-### Notice  
-These are other common missing dependencies, make sure they are all installed, **or the build will fail.**  
-**autoconf**, **libxi-dev**, **libvulkan-dev**
-
-You should also install **ccache** if you don't expect yourself to make it work on the first try.  
-It will make the build **after the the first one** at least **5 times faster**.
+This guide is rapidly changing, so please pay attention to the date at which it was updated. If it was updated while you were following it, start over.
 
 
-## Steps to compile  
-The lines that look like `this` are commands, run them in your terminal.  
-0. Install the build dependency (Check **Dependency install** section)  
-1. Clone the wine-tkg-git repo:  
+**In order to start this guide**, jump over to the [steps to compile](#steps-to-compile) section if you want to install Wine and Roblox.
+
+Alternatively, you can hop over to the [video guide](#video-guide) section in case you prefer to follow a video guide (although compilation is recommended).
+
+**In case you run into any issues while compiling**, you can hop over to the [common compilation errors](#common-compilation-errors) section.
+
+**If you run into any problems while trying to actually play the game** or use Wine in general, take a look at the [common errors or issues](#common-errors-or-issues) section.
+
+# Notice to video guide creators
+If you are creating a video guide (YouTube, etc.) please attach a link to this guide in the pinned comments, as well as the description.
+
+Mention of the Discord tag is optional but preferred.
+
+If you are telling people to download a precompiled version of Wine in your guide, please mention it as such.
+
+# Video guide
+Here's a video guide on YouTube. Do note that it tells you to download a precompiled version of Wine, which may contain malware or behave unexpectedly:
+
+[YouTube](https://www.youtube.com/watch?v=xQHBPXsorxU)
+
+[CloudTube](https://tube.cadence.moe/watch?v=xQHBPXsorxU)
+
+# Getting in touch
+You can get in touch on the Grapejuice Discord server: https://discord.gg/mRTzEb6
+
+Make sure to follow the rules and ask your question in one of the help channels. Do not post your question in multiple channels.
+
+
+# Steps to compile  
+
+1. **Clone the wine-tkg-git repository**:  
 `git clone https://github.com/Frogging-Family/wine-tkg-git.git`  
-2. Enter the just cloned directory:  
+2. **Enter the just cloned directory**:  
 `cd wine-tkg-git`  
-3. Download the patch file:  
+3. **Download the patch file**:  
 `curl https://raw.githubusercontent.com/e666666/robloxWineBuildGuide/main/roblox-wine-staging-v2.patch --output roblox-wine-staging-v2.patch`  
-4. Apply the patch **(You must build Wine according to the later steps for the patch to do anything)**:  
+4. **Apply the patch**:  
 `git apply roblox-wine-staging-v2.patch`  
-5. Change to the deeper folder:  
+5. **Change to the source folder**:  
 `cd wine-tkg-git`  
-6. Edit customization.cfg to your needs. (**Optional**)  
-For example, you can build Wine 6.16 by setting `_plain_version` to `6.16` and `_staging_version` to `v6.16`, notice the extra `v`.  
-7. Follow 7.1 or 7.2 according to your distro.  
-**(Please read through Common build problems below the guide before asking for help on the server)**  
-8.1. (If you are on **Arch Linux alike**) `makepkg -si` **(All lowercap)**  
-After the build finished, **make sure to unset wine_binary in ~/.config/brinkervii/grapejuice/user_settings.json, if you changed it before.**  
-8.2. (If you are not) `./non-makepkg-build.sh`
+6. **Edit `customization.cfg` to fit your needs (optional)**
+7. **Install dependencies**:
+   - **If you are on Arch Linux, skip this step**
+   - **If you are on Debian/Debian-based (Ubuntu, etc)**: change `_nomakepkg_dep_resolution_distro` to `debuntu` in `customization.cfg`. Then, run `sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade && sudo apt install autoconf libxi-dev libvulkan-dev`
+   - **If you are on Fedora/Fedora-based**: change `_nomakepkg_dep_resolution_distro` to `fedora` in `customization.cfg`
+   - **Tip**: You can install `ccache` on any distro mentioned above to speed up the 2nd time you compile by as much as 6 times.
+8. **Compile**:
+   - **If you are on Arch Linux**: `makepkg -si`
+   - **If you are on another distro** (Debian, Fedora): `./non-makepkg-build.sh`
+   - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
+   - [Get in touch](#getting-in-touch) if you have any further questions!
+9. **Getting the Wine path**
+   - **If you are on Arch Linux**: ignore this step
+   - **If you are on Debian or Fedora**:
+      - `cd non-makepkg-builds` (If this command failed, the build probably failed too.)
+      - `ls`
+      - Look for a file that looks something like: `wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`
+      - Run `realpath <name of the file here>` to get the full path to the file, which we will later use in Grapejuice.
+10. **Installing Grapejuice**:
+   - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
+11. **Configuring Grapejuice to use Wine**:
+   - **If you are on Arch Linux**: ignore this step
+   - **If you are on Debian or Fedora**:
+      - Open `~/.config/brinkervii/grapejuice/user_settings.json` in your text editor.
+      - Set the `wine_binary` field to the path you found in step 9, followed by `/bin/wine`.
+      
+      **For example**, if your path was `/home/user/wine-tkg-git/wine-tkg-git/non-makepkg-builds/wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`, you will have to turn it into `/home/user/wine-tkg-git/wine-tkg-git/non-makepkg-builds/wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d/bin/wine`
+12. **Try it out**:
+   - Press the Play button on any game on roblox.com
+   - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
+   - [Get in touch](#getting-in-touch) if you have any further questions!
 
-### After finishing Step 7.2, here is how to use the just built Wine  
-**(You don't have to do this if you followed Step 7.1)**  
-1. **From the same directory as the non-makepkg-build.sh**, `cd non-makepkg-builds`  
-If you can't find non-makepkg-builds after the script finished, **the build 99% failed.**  
-Check the script output in the terminal for info on the exact issue.  
-2. There should be a directory named something like **wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d**
-3. Move the directory outside of the wine-tkg-git repo, so you can delete the repo later to save space (**Optional**)
-4. Install Grapejuice
-5. Open **~/.config/brinkervii/grapejuice/user_settings.json** in your favorite editor
-6. Set **wine_binary** to **[The wine-tkg directory]/bin/wine**
+# Common compilation errors
 
+## ` ==> ERROR: Patch application has failed. The error was logged to [Some path]/wine-tkg-git/wine-tkg-git/prepare.log for your convenience.`  
 
-# Common build problems version 23, 2021-08-20 12 PM  
-## If guide version changed during your build, consider starting over.  
+This is likely an issue with wine-tkg-git. Check their Github page for any issues that were created and any possible workarounds. Usually, issues like these are fixed pretty quickly, so running `git pull` in the directory of wine-tkg-git should suffice.
 
-### If it complains `ERROR: Patch application has failed`  
-` ==> ERROR: Patch application has failed. The error was logged to [Some path]/wine-tkg-git/wine-tkg-git/prepare.log for your convenience.`  
-Open **prepare.log** (it's in the same directory as non-makepkg-build.sh) in a text editor, and scroll to the **bottom**.  
-There should be a line that looks like an error, **you should also check lines around the error, they can be the cause as well.**  
-If you want to ask for help, make sure to attach the **prepare.log** since the error itself is very generic.
+If you still have issues, you can make a Github issue or ask on the Grapejuice Discord server (mentioned in the Getting in touch section).
 
-### If Roblox is still acting up (Crash, Mouse bug, etc.)  
-#### If you didn't install globally  
-Make sure you changed **wine_binary** according to `After finishing Step 7.2`  
-#### If you installed globally  
-Try to issue `wine --version` from a terminal, it should look something like:  
-`wine-6.15.r1.gb09fe464 ( TkG Staging Esync Fsync )`  
-If it only shows `wine-6.15` or something like that, **the install failed**, try to reinstall.  
-If it still doesn't work, make sure to unset **wine_binary** to `""` in **~/.config/brinkervii/grapejuice/user_settings.json**.
+## If there are still issues present (mouse freezing, etc)
 
-### If it asks whether to uninstall gst-editing-services  
-If it asks whether to uninstall gst-editing-services, I suggest you to answer **yes**.  
+Ensure you followed the guide properly, especially when it came to installing/using it.
 
-### If it complains `ERROR: 'autoreconf -f' failed.`  
+## If it asks whether to uninstall gst-editing-services  
+Answer `yes`.
+
+## `ERROR: 'autoreconf -f' failed.`  
 Try to install **autoconf**.
 
-### If the script is trying to uninstall stuff  
-If you are running **Debian alike**, and the script is trying to uninstall stuff by calling **apt**, answer **yes**.  
-It is the build script swapping build library on the fly, so that you don't have to.
+## `E: Unable to locate package [package name]`  
+Make sure your Debian/Ubuntu version is up-to-date. If it is, make sure you ran all of the commands properly for Debian.
 
-### If it complains `E: Unable to locate package [Package Name]`  
-My guess is you are running **Debian alike**, this error can be sometimes safe.  
-But in case stuff went wrong, try to do `sudo apt update`, **make sure the command succeeds.**
+## `Cannot find the [something] binary.`  
+Install the package that provides the [something binary] with your package manager.
 
-### If it complains `Cannot find the [Something] binary.`  
-`==> ERROR: Cannot find the fakeroot binary.`  
-`==> ERROR: Cannot find the strip binary`  
-You need to install the command **fakeroot** and **strip**
+If, for example, it can't find `strip`, install `strip`. Same with `fakeroot`.
 
-### If it complains `error: « struct x11drv_thread_data » has no member named « xi2_state »`  
-`../wine-mirror-git/dlls/winex11.drv/mouse.c:541:13: error: « struct x11drv_thread_data » has no member named « xi2_state »`  
-Install **libxi-dev**.
+## `error: « struct x11drv_thread_data » has no member named « xi2_state »`  
 
-### If it complains `conflicting types for ‘resize_vk_surfaces’`  
-`../wine-mirror-git/dlls/winex11.drv/vulkan.c:878:6: error: conflicting types for ‘resize_vk_surfaces’`  
-You've hit an known issue at https://github.com/Frogging-Family/wine-tkg-git/issues/375 .  
-Fortunately, with help from `Plasmaman916#6510`, the fix was discovered.  
-You just need to install **libvulkan-dev**, and it will work.
+Install `libxi-dev`.
 
-### If it complains `error: Cannot build a 32-bit program.`  
-`configure: error: Cannot build a 32-bit program. you need to install 32-bit development libraries.`  
-1. Make sure that you followed the **Dependency install** section.  
-2. **(Debian alike)** Run `gcc --version`, after that, install **gcc-8-multilib**, replace 8 with the version that you got, try different version numbers (Ex. "8.4" and "8.4.0") if the package doesn't exist.
-3. Check the log file at **src/wine-tkg-staging-fsync-git-32-build/config.log** to see what might be wrong.  
-In order to find where stuff went wrong, I usually search for **the error** in the log file.  
-3. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro and the log file**, so we can figure out what's wrong.  
+## `conflicting types for ‘resize_vk_surfaces’`  
 
-### If it complains `error: X 32-bit development files not found.`  
-`error: X 32-bit development files not found. Wine will be built without X support, which probably isn't what you want.`  
-Do what it says, and install **libx11-dev:i386** if you're on Debian alike.
+Install `libvulkan-dev`. (thanks, `Plasmaman916#6510`!)
 
-### If it complains `error: gstreamer-1.0 base plugins 32-bit development files not found,`  
-`configure: error: gstreamer-1.0 base plugins 32-bit development files not found, GStreamer won't be supported.`  
-1. Make sure that you followed the **Dependency install** section.
-2. Make sure that you installed **the 32-bit version** of both **GStreamer 1.0 (libgstreamer1.0-dev:i386)** and **GStreamer Plugins Base 1.0 (libgstreamer-plugins-base1.0-dev:i386)**, they are **different** libraries!
-3. Make sure that you installed **GLib (libglib2.0-dev:i386)** 32-bit development files. **It is GLib, not glibc!**
-4. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro**, so we can figure out what's wrong.  
+Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
 
-### If it complains `error: FreeType 32-bit development files not found.`  
-`configure: error: FreeType 32-bit development files not found. Fonts will not be built.`
-1. Make sure that you followed the **Dependency install** section.
-2. Make sure that you installed **FreeType** for 32 bit, it's called **libfreetype-dev:i386** on Debian alike.
-3. If it's still not working, ask on #patch-help of the Grapejuice server **including your exact distro**, so we can figure out what's wrong.  
+## `configure: error: Cannot build a 32-bit program.`  
+ - Make sure you followed the guide properly, especially when it comes to installing dependencies.
+ - Check the log file at `src/wine-tkg-staging-fsync-git-32-build/config.log` to try to diagnose the issue.
+ - [Get in touch](#getting-in-touch)
 
-### If it complains `wine client error:0: version mismatch 726/728.`  
-`wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly, or you have an older one somewhere in your PATH. Or maybe the wrong wineserver is still running?`  
-You forgot to stop the **wineserver** process before installing the new built Wine.  
-Stop the process with `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`, and retry.  
-If it still doesn't work, **Close all your Wine programs**, issue `killall wineserver` and then **reinstall** the new built Wine.
+## If it complains `error: X 32-bit development files not found.`
+**If you are on Debian-like**: Install `libx11-dev:i386`.
 
-### If it complains `Unable to read VR Path Registry`  
+### If it complains `configure: error: gstreamer-1.0 base plugins 32-bit development files not found,`  
+ - Make sure you followed the guide properly, especially when it comes to installing dependencies.
+ - If you are on Debian, make sure the following packages are installed: `libgstreamer1.0-dev:i386 libgstreamer-plugins-base1.0-dev:i386 libglib2.0-dev:i386`
+ - [Get in touch](#getting-in-touch)
+
+## If it complains `configure: error: FreeType 32-bit development files not found.`  
+ - Make sure you followed the guide properly, especially when it comes to installing dependencies.
+ - If you are on Debian, make sure the following packages are installed: `libfreetype-dev:i386`
+ - [Get in touch](#getting-in-touch)
+
+### If it complains `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly,`  
+
+You need to stop any running `wineserver` process. You can do this by either rebooting, or running `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio.
+
+# Common errors or issues
+
+## Bad performance/input lag
+
+**Studio performance issues:**
+Go into Studio, press Alt+S, and then go to the renderer tab. Options such as the quality level and graphics level are available.
+Note that studio's OpenGL renderer can cause widgets to flicker, and studio's Vulkan renderer requires the child window renderer patch here https://github.com/Frogging-Family/wine-tkg-git/blob/master/wine-tkg-git/wine-tkg-patches/misc/childwindow.patch. It should be included if you're already using Wine TKG.
+
+**Game Client performance issues:**
+If you haven't already, try lowering the graphics quality.
+You can also click here to see how to change the renderer, which shouldn't affect graphics quality: https://discord.com/channels/563960075086200862/853709212030861363/853783776752566282
+
+**Using DXVK:**
+In addition to changing the renderer as mentioned in the above two sections, you can also use DXVK from <https://github.com/doitsujin/dxvk>. It can greatly improve performance. Make sure to set the wineprefix to the Grapejuice wineprefix, like `WINEPREFIX=~/.local/share/grapejuice/wineprefix ./setup_dxvk.sh install`, and enable any of the Direct3D renderers. This can get better performance than Roblox's OpenGL or Vulkan renderer.
+
+**Wine esync and fsync:**
+Wine staging, Lutris' Wine, and Wine TKG come with esync. Only Wine TKG comes with fsync. (this includes the Wine you build from this guide)
+You can use either fsync or esync, both of which improve performance. fsync improves performance more than esync.
+
+To enable them, edit `~/.config/brinkervii/grapejuice/user_settings.json` and go to the line with env.
+To use esync, edit that line to `"env": {"WINEESYNC": "1"}` and increase the number of file descriptors if it's low (check with `ulimit -Hn`)
+To use fsync, you first need a kernel which supports it. Then edit the line to `"env": {"WINEFSYNC": "1"}`
+
+Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Keep in mind that this will break any applications currently running through Wine.
+
+## `Unable to read VR Path Registry`  
 `Unable to read VR Path Registry from C:\users\username\AppData\Local\openvr\openvrpaths.vrpath`  
-This is a **safe** error, you can ignore it.  
+
+You can ignore this error.
+
+## "An error occured trying to launch the experience. Please try again later."
+
+If using Firefox, go to `about:config` and edit `network.http.referer.XOriginPolicy` to be `1`.
+
+## "An error occured in the secure channel support"
+
+On Arch Linux or Arch-based distributions, uninstall Grapejuice and then use the grapejuice-git package from the AUR. This has the package manager take care of dependencies.
+
+Alternatively, install `lib32-gnutls`
+
+## "The server name or address could not be resolved"
+
+Enable the nscd service from glibc
+
+## "Error at hooking LdrFindResource_U"
+
+Remove the CAP_NET_RAW capability from the Wine binaries
+
+## "Your graphics drivers seem to be too old for Roblox to use."
+
+On Arch Linux or Arch-based distributions, run sudo pacman -S vulkan-driver lib32-vulkan-driver vulkan-icd-loader lib32-vulkan-icd-loader
+
+## No Roblox window is created and there is GLXBadFBConfig in the logs
+
+Run `glxinfo -B | grep "OpenGL version string"`, If the version is below `4.0`, this fix likely won't work.
+
+Edit ~/.config/brinkervii/grapejuice/user_settings.json and replace `"env": {},` with `"env": {"MESA_GL_VERSION_OVERRIDE": "4.4"},`.
+
+If you already set some other environment variables, just add `"MESA_GL_VERSION_OVERRIDE": "4.4"` to the list.
+
+Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Keep in mind that this will close any applications currently running through Grapejuice.
+
+## Roblox crashes/kicks me out with an error
+- "You have been kicked due to unexpected client behavior"
+- "The program RobloxPlayerBeta.exe has encountered a serious problem and needs to close."
+- "Unhandled exception: page fault on read access"
+- "An unexpected error occurred and Roblox need to quit. We are sorry!"
+
+You need Wine 6.11 or above, which this guide provices. This is an indication that you did not apply/install the built Wine properly.
