@@ -190,7 +190,7 @@ Enable the nscd service from glibc
 
 ## "Error at hooking LdrFindResource_U"
 
-Remove the CAP_NET_RAW capability from the Wine binaries
+Remove the CAP_NET_RAW capability from the Wine binaries.
 
 ## "Your graphics drivers seem to be too old for Roblox to use."
 
