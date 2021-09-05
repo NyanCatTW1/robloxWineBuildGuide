@@ -194,7 +194,7 @@ Remove the CAP_NET_RAW capability from the Wine binaries
 
 ## "Your graphics drivers seem to be too old for Roblox to use."
 
-On Arch Linux or Arch-based distributions, run sudo pacman -S vulkan-driver lib32-vulkan-driver vulkan-icd-loader lib32-vulkan-icd-loader
+On Arch Linux or Arch-based distributions, run `sudo pacman -S vulkan-driver lib32-vulkan-driver vulkan-icd-loader lib32-vulkan-icd-loader`
 
 ## No Roblox window is created and there is GLXBadFBConfig in the logs
 
