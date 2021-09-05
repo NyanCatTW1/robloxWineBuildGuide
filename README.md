@@ -1,5 +1,5 @@
 # The ultimate Roblox on Linux guide
-This is a guide on building wine-tkg-git for Roblox as well as a couple of workarounds for issues, by `Nyan cat#8349`.
+This is a guide on building wine-tkg-git for Roblox as well as a couple of workarounds for issues, originally by `Nyan cat#8349`.
 
 It includes the following patches and improvements:
  - Right-click mouse fix (by applying a patch)
