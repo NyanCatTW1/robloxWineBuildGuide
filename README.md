@@ -64,8 +64,8 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - **If you are on Debian or Fedora**:
       - `cd non-makepkg-builds` (If this command failed, the build probably failed too.)
       - `ls`
-      - Look for a file that looks something like: `wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`
-      - Run `realpath <name of the file here>` to get the full path to the file, which we will later use in Grapejuice.
+      - Look for a folder that looks something like: `wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`
+      - Run `realpath <name of the folder here>` to get the full path to the folder, which we will later use in Grapejuice.
 10. **Installing Grapejuice**:
    - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
 11. **Configuring Grapejuice to use Wine**:
@@ -124,7 +124,7 @@ Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
 ## If it complains `error: X 32-bit development files not found.`
 **If you are on Debian-like**: Install `libx11-dev:i386`.
 
-### If it complains `configure: error: gstreamer-1.0 base plugins 32-bit development files not found,`  
+## If it complains `configure: error: gstreamer-1.0 base plugins 32-bit development files not found,`  
  - Make sure you followed the guide properly, especially when it comes to installing dependencies.
  - If you are on Debian, make sure the following packages are installed: `libgstreamer1.0-dev:i386 libgstreamer-plugins-base1.0-dev:i386 libglib2.0-dev:i386`
  - [Get in touch](#getting-in-touch)
@@ -134,9 +134,10 @@ Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
  - If you are on Debian, make sure the following packages are installed: `libfreetype-dev:i386`
  - [Get in touch](#getting-in-touch)
 
-### If it complains `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly,`  
+## If it complains `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly,`  
 
-You need to stop any running `wineserver` process. You can do this by either rebooting, or running `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio.
+You need to stop any running `wineserver` process. You can do this by either rebooting, or running `killall wineserver`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio and other Wine programs.  
+After that, run `makepkg -si` again if you are on Arch Linux, otherwise it should work fine by now.  
 
 # Common errors or issues
 
@@ -144,7 +145,7 @@ You need to stop any running `wineserver` process. You can do this by either reb
 
 **Studio performance issues:**
 Go into Studio, press Alt+S, and then go to the renderer tab. Options such as the quality level and graphics level are available.
-Note that studio's OpenGL renderer can cause widgets to flicker, and studio's Vulkan renderer requires the child window renderer patch here https://github.com/Frogging-Family/wine-tkg-git/blob/master/wine-tkg-git/wine-tkg-patches/misc/childwindow.patch. It should be included if you're already using Wine TKG.
+Note that studio's OpenGL renderer can cause widgets to flicker, and studio's Vulkan renderer requires the child window renderer patch here https://github.com/Frogging-Family/wine-tkg-git/blob/master/wine-tkg-git/wine-tkg-patches/misc/childwindow.patch. It should be included if you already followed the compilation guide.
 
 **Game Client performance issues:**
 If you haven't already, try lowering the graphics quality.
@@ -161,7 +162,7 @@ To enable them, edit `~/.config/brinkervii/grapejuice/user_settings.json` and go
 To use esync, edit that line to `"env": {"WINEESYNC": "1"}` and increase the number of file descriptors if it's low (check with `ulimit -Hn`)
 To use fsync, you first need a kernel which supports it. Then edit the line to `"env": {"WINEFSYNC": "1"}`
 
-Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Keep in mind that this will break any applications currently running through Wine.
+Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/wineprefix wineserver -k`. Keep in mind that this will stop any currently running Roblox instance.
 
 ## `Unable to read VR Path Registry`  
 `Unable to read VR Path Registry from C:\users\username\AppData\Local\openvr\openvrpaths.vrpath`  
