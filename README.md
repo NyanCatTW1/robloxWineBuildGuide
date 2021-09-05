@@ -1,3 +1,8 @@
+# To Pop!_OS/Kali Linux users  
+## Please notice that the distro you are using is not capable of building Wine, due to many conflicts in 32/64 bit packages. You must change distro in order to build Wine.  
+Also, don't use Kali Linux as your main distro, especially not with the default password.  
+If you're using other distros, just ignore this section and read below.  
+
 # The ultimate Roblox on Linux guide
 This is a guide on building wine-tkg-git for Roblox as well as a couple of workarounds for issues, originally by `Nyan cat#8349`.
 
