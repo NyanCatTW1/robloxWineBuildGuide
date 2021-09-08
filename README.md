@@ -136,20 +136,20 @@ Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
  - Check the log file at `src/wine-tkg-staging-fsync-git-32-build/config.log` to try to diagnose the issue.
  - [Get in touch](#getting-in-touch)
 
-## If it complains `error: X 32-bit development files not found.`
+## `error: X 32-bit development files not found.`
 **If you are on Debian-like**: Install `libx11-dev:i386`.
 
-## If it complains `configure: error: gstreamer-1.0 base plugins 32-bit development files not found,`  
+## `configure: error: gstreamer-1.0 base plugins 32-bit development files not found,`  
  - Make sure you followed the guide properly, especially when it comes to installing dependencies.
  - If you are on Debian, make sure the following packages are installed: `libgstreamer1.0-dev:i386 libgstreamer-plugins-base1.0-dev:i386 libglib2.0-dev:i386`
  - [Get in touch](#getting-in-touch)
 
-## If it complains `configure: error: FreeType 32-bit development files not found.`  
+## `configure: error: FreeType 32-bit development files not found.`  
  - Make sure you followed the guide properly, especially when it comes to installing dependencies.
  - If you are on Debian, make sure the following packages are installed: `libfreetype-dev:i386`
  - [Get in touch](#getting-in-touch)
 
-## If it complains `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly,`  
+## `wine client error:0: version mismatch 726/728. Your wineserver binary was not upgraded correctly,`  
 
 You need to stop any running `wineserver` process. You can do this by either rebooting, or running `killall wineserver`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio and other Wine programs.  
 After that, run `makepkg -si` again if you are on Arch Linux, otherwise it should work fine by now.  
