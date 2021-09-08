@@ -42,6 +42,8 @@ Make sure to follow the rules and ask your question in one of the help channels.
 
 
 # Steps to compile  
+<details open>
+<summary>Click to fold/unfold</summary>
 
 1. **Clone the wine-tkg-git repository**:  
 `git clone https://github.com/Frogging-Family/wine-tkg-git.git`  
@@ -89,8 +91,11 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - Press the Play button on any game on roblox.com
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
    - [Get in touch](#getting-in-touch) if you have any further questions!
+</details>
 
 # Common compilation errors
+<details>
+<summary>Click to fold/unfold</summary>
 
 ## ` ==> ERROR: Patch application has failed. The error was logged to [Some path]/wine-tkg-git/wine-tkg-git/prepare.log for your convenience.`  
 
@@ -148,8 +153,11 @@ Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
 
 You need to stop any running `wineserver` process. You can do this by either rebooting, or running `killall wineserver`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio and other Wine programs.  
 After that, run `makepkg -si` again if you are on Arch Linux, otherwise it should work fine by now.  
-
-# Common errors or issues
+</details>
+ 
+# Common Roblox errors or issues
+<details>
+<summary>Click to fold/unfold</summary>
 
 ## Bad performance/input lag
 
@@ -218,3 +226,5 @@ Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/winep
 - "An unexpected error occurred and Roblox need to quit. We are sorry!"
 
 You need Wine 6.11 or above, which this guide provices. This is an indication that you did not apply/install the built Wine properly.
+</details>
+ 
