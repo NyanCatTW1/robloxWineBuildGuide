@@ -79,7 +79,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - [Get in touch](#getting-in-touch) if you have any further questions!
 9. **Getting the Wine path**
    - **If you are on Arch Linux**: ignore this step
-   - **If you are on Debian or Fedora**:
+   - **If you are on other distros**:
       - `cd non-makepkg-builds` (If this command failed, the build probably failed too.)
       - `ls`
       - Look for a folder that looks something like: `wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`
@@ -88,7 +88,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
 11. **Configuring Grapejuice to use Wine**:
    - **If you are on Arch Linux**: ignore this step
-   - **If you are on Debian or Fedora**:
+   - **If you are on other distros**:
       - Open `~/.config/brinkervii/grapejuice/user_settings.json` in your text editor.
       - Set the `wine_binary` field to the path you found in step 9, followed by `/bin/wine`.
       
