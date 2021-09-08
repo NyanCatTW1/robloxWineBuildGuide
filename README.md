@@ -58,7 +58,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - **If you are on Arch Linux, skip this step**
    - **If you are on Debian/Debian-based (Ubuntu, etc)**: change `_nomakepkg_dep_resolution_distro` to `debuntu` in `customization.cfg`. Then, run `sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade && sudo apt install autoconf libxi-dev libvulkan-dev`
    - **If you are on Fedora-based**: change `_nomakepkg_dep_resolution_distro` to `fedora` in `customization.cfg`
-   - **If you are on Solus-based**: Use the following two commands to install everything you need (Credit to an anonymous user):  
+   - **If you are on Solus-based**: Use the following two commands to install everything you need:  
      64 bit dependencies:  
      `sudo eopkg install mingw-w64-gcc alsa-lib-devel pulseaudio-devel dbus-devel fontconfig-devel freetype2-devel libgnutls-devel libnotify-devel  libjpeg-turbo-devel libpng-devel libtiff-devel mesalib-devel gst-plugins-good libxml2-devel libxmu-devel libxslt-devel faudio-devel gstreamer-1.0-devel faudio gstreamer-1.0-plugins-base-devel ccache libx11-devel libxi-devel ldb-devel sdl2-devel vulkan ocl-icd-devel`  
      32 bit dependencies:  
@@ -199,7 +199,7 @@ Remove the CAP_NET_RAW capability from the Wine binaries
 
 ## "Your graphics drivers seem to be too old for Roblox to use."
 
-On Arch Linux or Arch-based distributions, run sudo pacman -S vulkan-driver lib32-vulkan-driver vulkan-icd-loader lib32-vulkan-icd-loader
+On Arch Linux or Arch-based distributions, run `sudo pacman -S vulkan-driver lib32-vulkan-driver vulkan-icd-loader lib32-vulkan-icd-loader`
 
 ## No Roblox window is created and there is GLXBadFBConfig in the logs
 
