@@ -58,8 +58,8 @@ Make sure to follow the rules and ask your question in one of the help channels.
 6. **Edit `customization.cfg` to fit your needs (optional)**
 7. **Install dependencies**:
    - **If you are on Arch Linux, skip this step**
-   - **If you are on Debian/Debian-based (Ubuntu, etc)**: change `_nomakepkg_dep_resolution_distro` to `debuntu` in `customization.cfg`. Then, run `sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade && sudo apt install autoconf libxi-dev libvulkan-dev`
-   - **If you are on Fedora-based**: change `_nomakepkg_dep_resolution_distro` to `fedora` in `customization.cfg`
+   - **If you are on Debian/Debian-based (Ubuntu, etc)**: change `_nomakepkg_dep_resolution_distro=""` to `_nomakepkg_dep_resolution_distro="debuntu"` in `customization.cfg`. Then, run `sudo dpkg --add-architecture i386 && sudo apt update && sudo apt upgrade && sudo apt install autoconf libxi-dev libvulkan-dev`
+   - **If you are on Fedora-based**: change `_nomakepkg_dep_resolution_distro=""` to `_nomakepkg_dep_resolution_distro="fedora"` in `customization.cfg`
    - **If you are on Solus-based**: Use the following two commands to install everything you need:  
  <details>
   <summary>Show/hide the commands</summary>
@@ -70,7 +70,9 @@ Make sure to follow the rules and ask your question in one of the help channels.
 `sudo eopkg install mingw-w64-gcc-32bit alsa-lib-32bit-devel pulseaudio-32bit-devel dbus-32bit-devel fontconfig-32bit-devel freetype2-32bit-devel libgnutls-32bit-devel libnotify-32bit-devel libjpeg-turbo-32bit-devel libpng-32bit-devel libtiff-32bit-devel mesalib-devel libxml2-32bit-devel libxmu-32bit-devel libxslt-32bit-devel faudio-32bit-devel  gstreamer-1.0-32bit-devel faudio-32bit gstreamer-1.0-plugins-base-32bit-devel libx11-32bit-devel libxi-32bit-devel unixodbc-32bit-devel unixodbc-32bit-devel unixodbc-32bit-devel libpcap-32bit-devel glibc-32bit-devel sdl2-32bit-devel libgcrypt-32bit-devel vulkan-32bit ocl-icd-32bit-devel libusb-32bit-devel`  
  
  </details>  
-
+ 
+   - **If none of the above describes your distro**: You need to install the dependencies yourself. A list of them are at https://wiki.winehq.org/Building_Wine#Satisfying_Build_Dependencies, **You need the `Needed for many applications` ones as well.**  
+ Make sure to check the [common compilation errors](#common-compilation-errors) section in case you hit any weird issues.  
    - **Tip**: You can install `ccache` on any distro mentioned above to speed up the 2nd time you compile by as much as 6 times.
 8. **Compile**:
    - **If you are on Arch Linux**: `makepkg -si`
