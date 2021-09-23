@@ -89,7 +89,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 10. **Installing Grapejuice**:
    - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
 11. **Configuring Grapejuice to use Wine**:
-   - **If you are on Arch Linux**: ignore this step
+   - **If you are on Arch Linux**: Make sure you uninstall Wine that came with the distro, **you should also set `wine_binary` to `""` according to the steps below.** In case the `wine` command is not found, repeat Step 8.
    - **If you are on other distros**:
       - Open `~/.config/brinkervii/grapejuice/user_settings.json` in your text editor.
       - Set the `wine_binary` field to the path you found in step 9, followed by `/bin/wine`.
