@@ -238,4 +238,4 @@ You need Wine 6.11 or above, which this guide provices. This is an indication th
  
 
 # Contributors
-## Nyancat "e666666" hippoz karimrir1
+[Contributors](https://github.com/e666666/robloxWineBuildGuide/graphs/contributors)
