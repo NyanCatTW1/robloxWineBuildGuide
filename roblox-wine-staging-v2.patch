@@ -1,7 +1,16 @@
 diff --git a/wine-tkg-git/customization.cfg b/wine-tkg-git/customization.cfg
-index 9ef9dca..dbf3fed 100644
+index 9ef9dca..04b4197 100644
 --- a/wine-tkg-git/customization.cfg
 +++ b/wine-tkg-git/customization.cfg
+@@ -41,7 +41,7 @@ _plain_version=""
+ _use_staging="true"
+ # staging commit or version tag if you want to use a specific staging version. Can use e.g. "7cfceb7", "v3.16" or "v4.0"
+ # Leave empty to use latest master - https://github.com/wine-staging/wine-staging/commits/master
+-_staging_version=""
++_staging_version="v6.0"
+ 
+ # fastsync - disable at runtime with WINE_DISABLE_FAST_SYNC=1 envvar - Set to true to enable winesync/fastsync support (only for mainline wine at this point in time)
+ # !! Disables esync / fsync support !!
 @@ -94,7 +94,7 @@ _assettocorsa_hudperf_fix="false"
  
  # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="false", native mfplat (win7) or WIP mfplat impl from Guy1524 (available in community-patches) and a different GPU driver than RADV
@@ -16,7 +25,20 @@ index 9ef9dca..dbf3fed 100644
  # community patches - add patches (separated by a space) of your choice by name from the community-patches dir - https://github.com/Frogging-Family/community-patches
  # example: _community_patches="amdags.mypatch GNUTLShack.mypatch"
 -_community_patches=""
-+_community_patches="roblox_mouse_fix.mypatch"
++_community_patches="roblox_fix.mypatch roblox_mouse_fix.mypatch"
+diff --git a/wine-tkg-git/wine-tkg-patches/hotfixes/earlyhotfixer b/wine-tkg-git/wine-tkg-patches/hotfixes/earlyhotfixer
+index fe94e6c..29a90f2 100755
+--- a/wine-tkg-git/wine-tkg-patches/hotfixes/earlyhotfixer
++++ b/wine-tkg-git/wine-tkg-patches/hotfixes/earlyhotfixer
+@@ -11,7 +11,7 @@ if [ -d "${srcdir}"/"${_stgsrcdir}" ]; then
+     fi    
+     
+     # Disable the roblox_fix patch if the Wine version selected already contains the patch.
+-    if [[ ${_community_patches[*]} =~ "roblox_fix.mypatch" ]] && ( git merge-base --is-ancestor 29e1494c72041f3d2ee89e89eff17877df7cabd2 HEAD ); then
++    if [[ ${_community_patches[*]} =~ "roblox_fix.mypatch" ]] && ( git merge-base --is-ancestor 29e1494c72041f3d2ee89e89eff17877df7cabd2 $(../"$_stgsrcdir"/patches/patchinstall.sh --upstream-commit) > /dev/null ); then
+       warning "Disabling the roblox_fix community patch because the patch is already in the Wine version selected."
+       _community_patches=$(echo $_community_patches | sed "s/roblox_fix.mypatch//g" | tr -s " ")
+     fi
 diff --git a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
 index 289e0f6..83f058f 100644
 --- a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
@@ -45,10 +67,10 @@ index 289e0f6..83f058f 100644
 -_hotfixes_no_confirm="false"
 +_hotfixes_no_confirm="ignore"
 diff --git a/wine-tkg-git/wine-tkg-scripts/prepare.sh b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-index 464091f..ed66d0f 100644
+index 564334a..87d5f86 100644
 --- a/wine-tkg-git/wine-tkg-scripts/prepare.sh
 +++ b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-@@ -695,6 +695,11 @@ _prepare() {
+@@ -696,6 +696,13 @@ _prepare() {
  	  echo -e "( Kernelbase reverts clean reverts applied )\n" >> "$_where"/last_build_config.log
  	fi
  
@@ -56,6 +78,8 @@ index 464091f..ed66d0f 100644
 +		_committorevert=db2b266c57b73e1a16785213ce923b749c84400e && nonuser_reverter
 +		echo -e "( Roblox Studio black mouse unbreak reverts applied )\n" >> "$_where"/last_build_config.log
 +	fi
++
++	curl https://raw.githubusercontent.com/karimrir1/the-dot-files/main/0007-ntdll-Elevate-processes-if-requested-in-RtlCreateUse.mypatch --output $_where/wine-tkg-userpatches/0007-ntdll-Elevate-processes-if-requested-in-RtlCreateUse.mypatch
 +
  	_commitmsg="01-reverts" _committer
  
