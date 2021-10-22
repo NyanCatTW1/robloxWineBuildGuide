@@ -1,10 +1,10 @@
 diff --git a/wine-tkg-git/customization.cfg b/wine-tkg-git/customization.cfg
-index 9ef9dca..dbf3fed 100644
+index a457946..27343f9 100644
 --- a/wine-tkg-git/customization.cfg
 +++ b/wine-tkg-git/customization.cfg
 @@ -94,7 +94,7 @@ _assettocorsa_hudperf_fix="false"
  
- # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="false", native mfplat (win7) or WIP mfplat impl from Guy1524 (available in community-patches) and a different GPU driver than RADV
+ # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="true", native mfplat (win7) or staging mfplat support and a different GPU driver than RADV
  # On Wine 5.2 (up to b1c748c8) and lower, it needs to be toogled on with the WINE_LOW_USER_SPACE_LIMIT=1 envvar
 -_mk11_fix="true"
 +_mk11_fix="false"
@@ -45,10 +45,10 @@ index 289e0f6..83f058f 100644
 -_hotfixes_no_confirm="false"
 +_hotfixes_no_confirm="ignore"
 diff --git a/wine-tkg-git/wine-tkg-scripts/prepare.sh b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-index 464091f..ed66d0f 100644
+index 66cd201..83954d3 100644
 --- a/wine-tkg-git/wine-tkg-scripts/prepare.sh
 +++ b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-@@ -695,6 +695,11 @@ _prepare() {
+@@ -697,6 +697,14 @@ _prepare() {
  	  echo -e "( Kernelbase reverts clean reverts applied )\n" >> "$_where"/last_build_config.log
  	fi
  
@@ -56,6 +56,9 @@ index 464091f..ed66d0f 100644
 +		_committorevert=db2b266c57b73e1a16785213ce923b749c84400e && nonuser_reverter
 +		echo -e "( Roblox Studio black mouse unbreak reverts applied )\n" >> "$_where"/last_build_config.log
 +	fi
++
++	
++
 +
  	_commitmsg="01-reverts" _committer
  
