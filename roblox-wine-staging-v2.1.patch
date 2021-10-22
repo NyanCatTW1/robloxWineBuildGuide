@@ -3,16 +3,16 @@ index a457946..27343f9 100644
 --- a/wine-tkg-git/customization.cfg
 +++ b/wine-tkg-git/customization.cfg
 @@ -94,7 +94,7 @@ _assettocorsa_hudperf_fix="false"
-
+ 
  # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="true", native mfplat (win7) or staging mfplat support and a different GPU driver than RADV
  # On Wine 5.2 (up to b1c748c8) and lower, it needs to be toogled on with the WINE_LOW_USER_SPACE_LIMIT=1 envvar
 -_mk11_fix="true"
 +_mk11_fix="false"
-
+ 
  # Workaround for Final Fantasy XIV Launcher 404 error - Thanks @varris1 ! - Fixed by d535df42f665a097ec721b10fb49d7b18f899be9 (4.10)
  # Found to also enable the new launcher (that came with the 5.1 update) to work *with issues*
 @@ -150,4 +150,4 @@ _protonify="false"
-
+ 
  # community patches - add patches (separated by a space) of your choice by name from the community-patches dir - https://github.com/Frogging-Family/community-patches
  # example: _community_patches="amdags.mypatch GNUTLShack.mypatch"
 -_community_patches=""
@@ -23,43 +23,40 @@ index 289e0f6..83f058f 100644
 +++ b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
 @@ -118,9 +118,9 @@ _localbuild=""
  _plain_mirrorsrc="true"
-
+ 
  # Sets custom configure-args for 64-bit, separated by a space (example: "--without-mingw --with-vkd3d")
 -_configure_userargs64="--with-x --with-gstreamer --with-xattr"
 +_configure_userargs64="--with-x --with-gstreamer --with-xattr --without-xpresent"
  # Sets custom configure-args for 32-bit, separated by a space (example: "--without-mingw --with-vkd3d")
 -_configure_userargs32="--with-x --with-gstreamer --with-xattr"
 +_configure_userargs32="--with-x --with-gstreamer --with-xattr --without-xpresent"
-
-
+ 
+ 
  # esync version - https://github.com/zfigura/wine/releases - If you want to use a specific esync version. For 3.20 or higher, use "ce79346". For 3.19 to 3.17, use "b4478b7". For 3.16 and lower, use "5898a69".
 @@ -253,8 +253,8 @@ _proton_mf_hacks="false"
  _user_patches="true"
-
+ 
  # Apply all user patches without confirmation - !!! NOT RECOMMENDED !!!
 -_user_patches_no_confirm="false"
 +_user_patches_no_confirm="true"
-
+ 
  # Set to "true" to apply all hotfix patches without confirmation, to "ignore" to ignore all hotfix patches without confirmation
  # Default ("false") will prompt at build time
 -_hotfixes_no_confirm="false"
 +_hotfixes_no_confirm="ignore"
 diff --git a/wine-tkg-git/wine-tkg-scripts/prepare.sh b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-index 66cd201..83954d3 100644
+index 66cd201..91f179b 100644
 --- a/wine-tkg-git/wine-tkg-scripts/prepare.sh
 +++ b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-@@ -697,6 +697,14 @@ _prepare() {
+@@ -697,6 +697,11 @@ _prepare() {
  	  echo -e "( Kernelbase reverts clean reverts applied )\n" >> "$_where"/last_build_config.log
  	fi
-
+ 
 +	if git merge-base --is-ancestor db2b266c57b73e1a16785213ce923b749c84400e HEAD; then
 +		_committorevert=db2b266c57b73e1a16785213ce923b749c84400e && nonuser_reverter
 +		echo -e "( Roblox Studio black mouse unbreak reverts applied )\n" >> "$_where"/last_build_config.log
 +	fi
 +
-+
-+
-+
  	_commitmsg="01-reverts" _committer
-
+ 
  	# Don't include *.orig and *~ files in the generated staging patchsets
