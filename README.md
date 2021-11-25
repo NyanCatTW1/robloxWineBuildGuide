@@ -1,9 +1,12 @@
-# To Pop!_OS/Kali Linux users  
-## Please notice that the distro you are using is not capable of building Wine, due to many conflicts in 32/64 bit packages. You must change distro in order to build Wine.  
+# Note To Pop!_OS/Kali Linux users  
+## Please notice that the distro you are using is not capable of building Wine, due to many conflicts in 32/64 bit packages.
+## You must change distro in order to build Wine.
 Also, don't use Kali Linux as your main distro, especially not with the default password.  
 If you're using other distros, just ignore this section and read below.  
 
-# The ultimate Roblox on Linux guide
+<br>
+
+# The Ultimate Roblox on Linux Guide
 This is a guide on building wine-tkg-git for Roblox as well as a couple of workarounds for issues, originally by `Nyan cat#8349`.
 
 It includes the following patches and improvements:
@@ -21,12 +24,16 @@ Alternatively, you can hop over to the [video guide](#video-guide) section in ca
 
 **If you run into any problems while trying to actually play the game** or use Wine in general, take a look at the [common errors or issues](#common-errors-or-issues) section.
 
+<br>
+
 # Notice to video guide creators
 If you are creating a video guide (YouTube, etc.) please attach a link to this guide in the pinned comments, as well as the description.
 
 Mention of the Discord tag is optional but preferred.
 
 If you are telling people to download a precompiled version of Wine in your guide, please mention it as such.
+
+<br>
 
 # Video guide
 Here's a video guide on YouTube. Do note that it tells you to download a precompiled version of Wine, which may contain malware or behave unexpectedly:
@@ -35,11 +42,14 @@ Here's a video guide on YouTube. Do note that it tells you to download a precomp
 
 [CloudTube](https://tube.cadence.moe/watch?v=xQHBPXsorxU)
 
+<br>
+
 # Getting in touch
 You can get in touch on the Grapejuice Discord server: https://discord.gg/mRTzEb6
 
 Make sure to follow the rules and ask your question in one of the help channels. Do not post your question in multiple channels.
 
+<br>
 
 # Steps to compile  
 <details open>
@@ -100,6 +110,48 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
    - [Get in touch](#getting-in-touch) if you have any further questions!
 </details>
+<br>
+
+# Installing DXVK (DirectX over Vulkan)
+<details open>
+<summary>Click to fold/unfold</summary>
+<br>
+
+### DirectX over Vulkan (**DXVK**) is a translation layer for Direct3D 9/10/11 which converts Direct3D API Calls over to native Vulkan using Wine.
+### DXVK greatly improves game 3D performance. Installation is quick and simple, resulting in **amazing** performance.
+### Follow the instructions below to install DXVK in your Grapejuice wine prefix.
+<br>
+
+1. **Verify Vulkan is installed. [Skip if already installed]**:
+- Vulkan is supported and integrated with most graphics drivers offered by most popular distributions. You most likely already have Vulkan drivers.
+- To verify if Vulkan is installed, install the `vulkan-tools` package from your distribution's package manager.
+- Once the utility is installed, run `vkcube` from your terminal. If a test window appears with a spinning cube, Vulkan is installed in your system.
+- If Vulkan is not installed, update your graphics drivers and verify your GPU or intergrated graphics support Vulkan.
+
+2. **Download the latest DXVK release**:
+- Go to the [DXVK github repository](https://github.com/doitsujin/dxvk), and click on the `Releases` tab on the right of the page.
+- In the latest version listed, scroll down to the `Assets` section and download the `dxvk-1.X.X.tar.gz` compressed archive.
+
+3. **Extract the compressed archive**:
+- Run the following command: `sudo tar -xvf dxvk-1.X.X.tar.gz -C /tmp` in the directory your new compressed archive is in.
+- Change to the directory with your new extracted files: `cd /tmp/dxvk-1.X.X` (replace 1.X.X with your downloaded version number)
+
+4. **Install DXVK to your Grapejuice wine prefix**:
+- Run the command: `WINEPREFIX=~/.local/share/grapejuice/wineprefix`, to point to the grapejuice wine prefix.
+- Run the following command: `./setup_dxvk.sh install`, to run the DXVK install script.
+- You should see the output of it copying all of DXVK's DDLs over to `system32` and `syswow64` in the wine prefix.
+
+5. **Verify that Direct3D 10 or 11 is running in Roblox**:
+- To make sure DXVK is working, confirm Roblox is running Direct3D 10/11. [**D3D9 is not supported** as of August 2021]
+- In Roblox, use the keyboard shortcut `Shift+F2` to see an information box in the bottom left of your screen.
+- In the Graphics information section, you should see `D3D11` or `D3D10` as the rendering engine.
+- If another rendering engine is being used, use the built in Grapejuice Fast Flag editor to force the use of Direct3D.
+   - To force D3D11 in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferD3D11` flag.
+
+## DXVK should now be successfully installed in your Grapejuice wine prefix!
+
+</details>
+<br>
 
 # Common compilation errors
 <details>
@@ -162,6 +214,7 @@ Github issue: https://github.com/Frogging-Family/wine-tkg-git/issues/375
 You need to stop any running `wineserver` process. You can do this by either rebooting, or running `killall wineserver`. Note that this will stop all running Wine programs so you may lose unsaved work in Studio and other Wine programs.  
 After that, run `makepkg -si` again if you are on Arch Linux, otherwise it should work fine by now.  
 </details>
+<br>
  
 # Common Roblox errors or issues
 <details>
@@ -178,7 +231,8 @@ If you haven't already, try lowering the graphics quality.
 You can also click here to see how to change the renderer, which shouldn't affect graphics quality: https://discord.com/channels/563960075086200862/853709212030861363/853783776752566282
 
 **Using DXVK:**
-In addition to changing the renderer as mentioned in the above two sections, you can also use DXVK from <https://github.com/doitsujin/dxvk>. It can greatly improve performance. Make sure to set the wineprefix to the Grapejuice wineprefix, like `WINEPREFIX=~/.local/share/grapejuice/wineprefix ./setup_dxvk.sh install`, and enable any of the Direct3D renderers. This can get better performance than Roblox's OpenGL or Vulkan renderer.
+Using DXVK can get better performance than Roblox's OpenGL or Vulkan renderer.
+You can use the [full DXVK installation guide](#Installing-DXVK-(DirectX-over-Vulkan)) to install DXVK.
 
 **Wine esync and fsync:**
 Wine staging, Lutris' Wine, and Wine TKG come with esync. Only Wine TKG comes with fsync. (this includes the Wine you build from this guide)
@@ -235,4 +289,4 @@ Afterwards, kill the wineserver with `WINEPREFIX=~/.local/share/grapejuice/winep
 
 You need Wine 6.11 or above, which this guide provices. This is an indication that you did not apply/install the built Wine properly.
 </details>
- 
+<br>
