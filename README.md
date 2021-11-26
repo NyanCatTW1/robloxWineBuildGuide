@@ -119,7 +119,8 @@ Make sure to follow the rules and ask your question in one of the help channels.
 
 ### DirectX over Vulkan (**DXVK**) is a translation layer for Direct3D 9/10/11 which converts Direct3D API Calls over to native Vulkan using Wine.
 ### DXVK greatly improves game 3D performance. Installation is quick and simple, resulting in **amazing** performance.
-### Follow the instructions below to install DXVK in your Grapejuice wine prefix.
+### Follow the instructions below to install DXVK in your Grapejuice wine prefix.  
+### (As it work better than DXVK on *some* devices, you should also try the Vulkan renderer, which can be done by skipping to step 6 **once you've done step 1**.)
 <br>
 
 1. **Verify Vulkan is installed. [Skip if already installed]**:
@@ -141,14 +142,18 @@ Make sure to follow the rules and ask your question in one of the help channels.
 - Run the following command: `./setup_dxvk.sh install`, to run the DXVK install script.
 - You should see the output of it copying all of DXVK's DDLs over to `system32` and `syswow64` in the wine prefix.
 
-5. **Verify that Direct3D 10 or 11 is running in Roblox**:
+5. **Verify that Direct3D 10 or 11 is running in Roblox**:  
 - To make sure DXVK is working, confirm Roblox is running Direct3D 10/11. [**D3D9 is not supported** as of August 2021]
 - In Roblox, use the keyboard shortcut `Shift+F2` to see an information box in the bottom left of your screen.
 - In the Graphics information section, you should see `D3D11` or `D3D10` as the rendering engine.
+
+6. **Force Roblox to use another renderer**:  
 - If another rendering engine is being used, use the built in Grapejuice Fast Flag editor to force the use of Direct3D.
    - To force D3D11 in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferD3D11` flag.
+   - To force Vulkan in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferVulkan` flag.
 
-## DXVK should now be successfully installed in your Grapejuice wine prefix!
+## Roblox should be running faster than ever before now!  
+## Notice: If you ever delete the Grapejuice wineprefix, you'll have to do the above steps again to get DXVK back.  
 
 </details>
 <br>
@@ -230,9 +235,11 @@ Note that studio's OpenGL renderer can cause widgets to flicker, and studio's Vu
 If you haven't already, try lowering the graphics quality.
 You can also click here to see how to change the renderer, which shouldn't affect graphics quality: https://discord.com/channels/563960075086200862/853709212030861363/853783776752566282
 
-**Using DXVK:**
-Using DXVK can get better performance than Roblox's OpenGL or Vulkan renderer.
-You can use the [full DXVK installation guide](#Installing-DXVK-(DirectX-over-Vulkan)) to install DXVK.
+**Choosing a renderer:**
+Using DXVK or Vulkan renderer can get better performance than other renderers.  
+You can use the [full DXVK installation guide](#Installing-DXVK-(DirectX-over-Vulkan)) to install DXVK.  
+Alternatively, to force Vulkan in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferVulkan` flag.  
+Their performance differs from device to device, so you're suggested to try them both to see which one fits your device better.
 
 **Wine esync and fsync:**
 Wine staging, Lutris' Wine, and Wine TKG come with esync. Only Wine TKG comes with fsync. (this includes the Wine you build from this guide)
