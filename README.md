@@ -62,7 +62,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 3. **Download the patch file**:  
 `curl https://raw.githubusercontent.com/e666666/robloxWineBuildGuide/main/roblox-wine-staging-v2.2.patch --output roblox-wine-staging-v2.2.patch`  
 4. **Apply the patch**:  
-`git apply roblox-wine-staging-v2.1.patch`  
+`git apply roblox-wine-staging-v2.2.patch`  
 5. **Change to the source folder**:  
 `cd wine-tkg-git`  
 6. **Edit `customization.cfg` to fit your needs (optional)**
