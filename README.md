@@ -99,12 +99,10 @@ Make sure to follow the rules and ask your question in one of the help channels.
 10. **Installing Grapejuice**:
    - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
 11. **Configuring Grapejuice to use Wine**:
-   - **If you are on Arch Linux**: Make sure you uninstall Wine that came with the distro, **you should also set `wine_binary` to `""` according to the steps below.** In case the `wine` command is not found, repeat Step 8.
+   - **If you are on Arch Linux**: Make sure you uninstall Wine that came with the distro, **you should also set `wine_home` to `"/usr"` according to the steps below.** In case the `wine` command is not found, repeat Step 8.
    - **If you are on other distros**:
       - Open `~/.config/brinkervii/grapejuice/user_settings.json` in your text editor.
-      - Set the `wine_binary` field to the path you found in step 9, followed by `/bin/wine`.
-      
-      **For example**, if your path was `/home/user/wine-tkg-git/wine-tkg-git/non-makepkg-builds/wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`, you will have to turn it into `/home/user/wine-tkg-git/wine-tkg-git/non-makepkg-builds/wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d/bin/wine`
+      - Set the `wine_home` field to the path you found in step 9.
 12. **Try it out**:
    - Press the Play button on any game on roblox.com
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
