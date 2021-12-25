@@ -102,7 +102,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
    - **If you are on Arch Linux**: Make sure you uninstall Wine that came with the distro, **you should also set `wine_home` to `"/usr"` according to the steps below.** In case the `wine` command is not found, repeat Step 8.
    - **If you are on other distros**:
       - Open `~/.config/brinkervii/grapejuice/user_settings.json` in your text editor.
-      - Set the `wine_home` field to the path you found in step 9.
+      - Set **every** `wine_home` fields to the path you found in step 9. (There are multiple of them!)
 12. **Try it out**:
    - Press the Play button on any game on roblox.com
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
