@@ -127,29 +127,22 @@ Make sure to follow the rules and ask your question in one of the help channels.
 - Once the utility is installed, run `vkcube` from your terminal. If a test window appears with a spinning cube, Vulkan is installed in your system.
 - If Vulkan is not installed, update your graphics drivers and verify your GPU or intergrated graphics support Vulkan.
 
-2. **Download the latest DXVK release**:
-- Go to the [DXVK github repository](https://github.com/doitsujin/dxvk), and click on the `Releases` tab on the right of the page.
-- In the latest version listed, scroll down to the `Assets` section and download the `dxvk-1.X.X.tar.gz` compressed archive.
+2. **Downloading DXVK through grapejuice**:
+- Go to the wineprefix that you want to install DXVK on, in this case it's the "Player" prefix
+- Scroll down to the third party section, which is at the bottom
+- Toggle the "Use DXVK D3D implementation" toggle, Grapejuice should now start downloading DXVK.
 
-3. **Extract the compressed archive**:
-- Run the following command: `sudo tar -xvf dxvk-1.X.X.tar.gz -C /tmp` in the directory your new compressed archive is in.
-- Change to the directory with your new extracted files: `cd /tmp/dxvk-1.X.X` (replace 1.X.X with your downloaded version number)
 
-4. **Install DXVK to your Grapejuice wine prefix**:
-- Run the command: `WINEPREFIX=~/.local/share/grapejuice/wineprefix`, to point to the grapejuice wine prefix.
-- Run the following command: `./setup_dxvk.sh install`, to run the DXVK install script.
-- You should see the output of it copying all of DXVK's DDLs over to `system32` and `syswow64` in the wine prefix.
-
-5. **Verify that Direct3D 10 or 11 is running in Roblox**:  
+3. **Verify that Direct3D 10 or 11 is running in Roblox**:  
 - To make sure DXVK is working, confirm Roblox is running Direct3D 10/11. [**D3D9 is not supported** as of August 2021]
 - In Roblox, use the keyboard shortcut `Shift+F2` to see an information box in the bottom left of your screen.
 - In the Graphics information section, you should see `D3D11` or `D3D10` as the rendering engine.
 
-6. **Force Roblox to use another renderer**:  
+4. **Force Roblox to use another renderer**:  
 - If another rendering engine is being used, use the built in Grapejuice Fast Flag editor to force the use of Direct3D.
-   - To force D3D11 in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferD3D11` flag.
-   - To force Vulkan in Roblox, open the Grapejuice Fast Flag editor and enable the `FFlagDebugGraphicsPreferVulkan` flag.
-
+   - To force D3D11 in Roblox, open grapejuice, scroll down to the "Graphics Settings" section. and set the "Roblox Renderer" to DX11
+   - To force Vulkan in Roblox, do the same thing as above, except set the "Roblox Renderer" to Vulkan
+ 
 ## Roblox should be running faster than ever before now!  
 ## Notice: If you ever delete the Grapejuice wineprefix, you'll have to do the above steps again to get DXVK back.  
 
