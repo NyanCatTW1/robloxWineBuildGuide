@@ -139,7 +139,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 - In the Graphics information section, you should see `D3D11` or `D3D10` as the rendering engine.
 
 4. **Force Roblox to use another renderer**:  
-- If another rendering engine is being used, use the built in Grapejuice Fast Flag editor to force the use of Direct3D.
+- If another rendering engine is being used, use the built in Grapejuice render option to force the use of Direct3D.
    - To force D3D11 in Roblox, open grapejuice, scroll down to the "Graphics Settings" section. and set the "Roblox Renderer" to DX11
    - To force Vulkan in Roblox, do the same thing as above, except set the "Roblox Renderer" to Vulkan
  
