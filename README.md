@@ -97,7 +97,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
       - Look for a folder that looks something like: `wine-tkg-staging-fsync-git-6.14.r7.g05c42b1d`
       - Run `realpath <name of the folder here>` to get the full path to the folder, which we will later use in Grapejuice.
 10. **Installing Grapejuice**:
-   - Go to [this link](https://gitlab.com/brinkervii/grapejuice/-/wikis/home) and follow the instructions specific to your distribution.
+   - Go to [this link](https://brinkervii.gitlab.io/grapejuice/docs/) and follow the instructions specific to your distribution.
 11. **Configuring Grapejuice to use Wine**:
    - **If you are on Arch Linux**: Make sure you uninstall Wine that came with the distro, **you should also set `wine_home` to `"/usr"` according to the steps below.** In case the `wine` command is not found, repeat Step 8.
    - **If you are on other distros**:
