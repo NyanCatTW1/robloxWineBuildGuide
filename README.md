@@ -118,7 +118,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 ### DirectX over Vulkan (**DXVK**) is a translation layer for Direct3D 9/10/11 which converts Direct3D API Calls over to native Vulkan using Wine.
 ### DXVK greatly improves game 3D performance. Installation is quick and simple, resulting in **amazing** performance.
 ### Follow the instructions below to install DXVK in your Grapejuice wine prefix.  
-### (As it work better than DXVK on *some* devices, you should also try the Vulkan renderer, which can be done by skipping to step 6 **once you've done step 1**.)
+### (As it work better than DXVK on *some* devices, you should also try the Vulkan renderer, which can be done by skipping to step 4 **once you've done step 1**.)
 <br>
 
 1. **Verify Vulkan is installed. [Skip if already installed]**:
