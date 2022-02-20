@@ -1,22 +1,25 @@
 diff --git a/wine-tkg-git/customization.cfg b/wine-tkg-git/customization.cfg
-index 813d603..ac40f79 100644
+index 0850c27..138abf9 100644
 --- a/wine-tkg-git/customization.cfg
 +++ b/wine-tkg-git/customization.cfg
 @@ -97,7 +97,7 @@ _assettocorsa_hudperf_fix="false"
- 
+
  # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="true", native mfplat (win7) or staging mfplat support and a different GPU driver than RADV
  # On Wine 5.2 (up to b1c748c8) and lower, it needs to be toogled on with the WINE_LOW_USER_SPACE_LIMIT=1 envvar
 -_mk11_fix="true"
 +_mk11_fix="false"
- 
+
  # Workaround for Final Fantasy XIV Launcher 404 error - Thanks @varris1 ! - Fixed by d535df42f665a097ec721b10fb49d7b18f899be9 (4.10)
  # Found to also enable the new launcher (that came with the 5.1 update) to work *with issues*
-@@ -150,4 +150,4 @@ _protonify="false"
- 
+@@ -150,7 +150,7 @@ _protonify="false"
+
  # community patches - add patches (separated by a space) of your choice by name from the community-patches dir - https://github.com/Frogging-Family/community-patches
  # example: _community_patches="amdags.mypatch GNUTLShack.mypatch"
 -_community_patches=""
 +_community_patches="roblox_mouse_fix.mypatch"
+
+ # Automatically update community-patches from git - set to false if you don't want this behaviour, useful for example if you have your own fork.
+ _community_patches_auto_update="true"
 diff --git a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
 index c778cc1..b315b4b 100644
 --- a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
