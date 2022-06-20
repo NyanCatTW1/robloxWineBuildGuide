@@ -51,18 +51,17 @@ index 61ccce4..99bcd4c 100644
  _hotfixansw_staging_mfplat=""
  # Set to false to disable staging pulseaudio restoration in case a hotfix is available and _hotfixes_no_confirm is set to "true"
 diff --git a/wine-tkg-git/wine-tkg-scripts/prepare.sh b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-index 5e5f050..96579c4 100644
+index 2b3d191..6b47bce 100644
 --- a/wine-tkg-git/wine-tkg-scripts/prepare.sh
 +++ b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-@@ -666,6 +666,11 @@ _prepare() {
- 
-     source "$_where"/wine-tkg-patches/reverts
- 
-+	if ! git merge-base --is-ancestor 197f2ee6c0e2dd70cfac6e15ede7fc0e38948188 HEAD; then
-+		_committorevert=db2b266c57b73e1a16785213ce923b749c84400e && nonuser_reverter
-+		echo -e "( Roblox Studio black mouse unbreak reverts applied )\n" >> "$_where"/last_build_config.log
-+	fi
-+
+@@ -683,6 +683,10 @@ _prepare() {
+
+ 	if [ "$_unfrog" != "true" ]; then
+ 	  source "$_where"/wine-tkg-patches/reverts
++		if ! git merge-base --is-ancestor 197f2ee6c0e2dd70cfac6e15ede7fc0e38948188 HEAD; then
++			_committorevert=db2b266c57b73e1a16785213ce923b749c84400e && nonuser_reverter
++			echo -e "( Roblox Studio black mouse unbreak reverts applied )\n" >> "$_where"/last_build_config.log
++		fi
+ 	fi
+
  	_commitmsg="01-reverts" _committer
- 
- 	# Don't include *.orig and *~ files in the generated staging patchsets
