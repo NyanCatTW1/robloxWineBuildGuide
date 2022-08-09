@@ -87,7 +87,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 8. **Compile**:
    - **If you are on Arch Linux**: `makepkg -si`
    - **If you are on another distro** (Debian, Fedora): `./non-makepkg-build.sh`
-   - **When the script complains** `No _LOCAL_PRESET set in .cfg. Please select your desired base (or hit enter for default) :` Choice 0 (default-tkg) or simply press enter.
+   - **When the script complains** `No _LOCAL_PRESET set in .cfg. Please select your desired base (or hit enter for default) :` Choose 0 (default-tkg) or simply press enter.
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
    - [Get in touch](#getting-in-touch) if you have any further questions!
 9. **Getting the Wine path**
