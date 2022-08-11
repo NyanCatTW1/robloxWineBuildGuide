@@ -60,9 +60,9 @@ Make sure to follow the rules and ask your question in one of the help channels.
 2. **Enter the just cloned directory**:  
 `cd wine-tkg-git`  
 3. **Download the patch file**:  
-`curl https://raw.githubusercontent.com/e666666/robloxWineBuildGuide/main/roblox-wine-staging-v2.3.patch --output roblox-wine-staging-v2.3.patch`  
+`curl https://raw.githubusercontent.com/e666666/robloxWineBuildGuide/main/0001-Add-proton-LFH-Patch.patch --output 0001-Add-proton-LFH-Patch.patch`  
 4. **Apply the patch**:  
-`git apply roblox-wine-staging-v2.3.patch`  
+`git apply 0001-Add-proton-LFH-Patch.patch`  
 5. **Change to the source folder**:  
 `cd wine-tkg-git`  
 6. **Edit `customization.cfg` to fit your needs (optional)**
@@ -87,7 +87,7 @@ Make sure to follow the rules and ask your question in one of the help channels.
 8. **Compile**:
    - **If you are on Arch Linux**: `makepkg -si`
    - **If you are on another distro** (Debian, Fedora): `./non-makepkg-build.sh`
-   - **When the script complains** `No _LOCAL_PRESET set in .cfg. Please select your desired base (or hit enter for default) :` Choose 0 (default-tkg) or simply press enter.
+   - **If the script complains** `No _LOCAL_PRESET set in .cfg. Please select your desired base (or hit enter for default) :` Choose 0 (default-tkg) or simply press enter.
    - **If you encounter any issues**, errors or low performance, please look if they are mentioned in this guide. You can use `CTRL + F` in your browser to search for any errors mentioned here.
    - [Get in touch](#getting-in-touch) if you have any further questions!
 9. **Getting the Wine path**
