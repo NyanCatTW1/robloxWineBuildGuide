@@ -55,31 +55,22 @@ index 59a9566..00fe2ad 100644
  # Automatically update community-patches from git - set to false if you don't want this behaviour, useful for example if you have your own fork.
  _community_patches_auto_update="true"
 diff --git a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
-index 231411a..0b45303 100644
+index 1391778..790f854 100644
 --- a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
 +++ b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
-@@ -126,9 +126,9 @@ _localbuild=""
- _plain_mirrorsrc="true"
- 
- # Sets custom configure-args for 64-bit, separated by a space (example: "--without-mingw --with-vkd3d")
--_configure_userargs64="--with-x --with-gstreamer --with-xattr"
-+_configure_userargs64="--with-x --with-gstreamer --with-xattr --without-xpresent"
- # Sets custom configure-args for 32-bit, separated by a space (example: "--without-mingw --with-vkd3d")
--_configure_userargs32="--with-x --with-gstreamer --with-xattr"
-+_configure_userargs32="--with-x --with-gstreamer --with-xattr --without-xpresent"
- 
- 
- # esync version - https://github.com/zfigura/wine/releases - If you want to use a specific esync version. For 3.20 or higher, use "ce79346". For 3.19 to 3.17, use "b4478b7". For 3.16 and lower, use "5898a69".
-@@ -270,11 +270,11 @@ _fsync_futex2="true"
- _user_patches="true"
- 
+@@ -267,14 +267,14 @@ _fsync_futex2="true"
+ #### USER PATCHES - See README in ./wine-tkg-userpatches dir for instructions ####
+
+ # Userpatches variable below must be set to true to enable userpatches support.
+-_user_patches="true"
++_user_patches="false"
+
  # Apply all user patches without confirmation - !!! NOT RECOMMENDED !!!
--_user_patches_no_confirm="false"
-+_user_patches_no_confirm="true"
- 
- # Set to "true" to apply all hotfix patches without confirmation, to "ignore" to ignore all hotfix patches without confirmation
- # Default ("false") will prompt at build time
--_hotfixes_no_confirm="false"
+ _user_patches_no_confirm="false"
+
+ # Set to "false" to prompt about all non-critical hotfix patches at build time, or "ignore" to ignore all non-critical hotfix patches without confirmation
+ # Default ("true") will apply all non-critical hotfix patches without confirmation
+-_hotfixes_no_confirm="true"
 +_hotfixes_no_confirm="ignore"
  # Set to false to disable staging mfplat restoration in case a hotfix is available and _hotfixes_no_confirm is set to "true"
  _hotfixansw_staging_mfplat=""
@@ -101,4 +92,3 @@ index e56fd33..959abbe 100644
  	_commitmsg="01-reverts" _committer
 -- 
 2.35.1
-
