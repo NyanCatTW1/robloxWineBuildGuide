@@ -1,22 +1,5 @@
-From b2b515d7d65d853777e5070ca7c139f8095f4a3d Mon Sep 17 00:00:00 2001
-From: karimrir1 <50053541+karimrir1@users.noreply.github.com>
-Date: Wed, 10 Aug 2022 16:10:40 +0300
-Subject: [PATCH] Add proton LFH Patch
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-Add the low fragmentation heap™ for better performance when running roblox and silence the _LOCAL_PRESET prompt
-
-Signed-off-by: karimrir1 <50053541+karimrir1@users.noreply.github.com>
----
- wine-tkg-git/customization.cfg                            | 8 ++++----
- wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg | 8 ++++----
- wine-tkg-git/wine-tkg-scripts/prepare.sh                  | 4 ++++
- 3 files changed, 12 insertions(+), 8 deletions(-)
-
 diff --git a/wine-tkg-git/customization.cfg b/wine-tkg-git/customization.cfg
-index 59a9566..00fe2ad 100644
+index b48b74a..a2d088b 100644
 --- a/wine-tkg-git/customization.cfg
 +++ b/wine-tkg-git/customization.cfg
 @@ -37,7 +37,7 @@ _GENERATE_DEBIAN_PACKAGE="false"
@@ -28,7 +11,7 @@ index 59a9566..00fe2ad 100644
  
  # Add GloriousEggroll game patches and hotfixes when using a Valve profile with staging enabled
  # ! This will only affect Valve + staging trees !
-@@ -108,7 +108,7 @@ _assettocorsa_hudperf_fix="false"
+@@ -121,7 +121,7 @@ _assettocorsa_hudperf_fix="false"
  
  # Fixes for Mortal Kombat 11 - Requires staging, _proton_fs_hack="true", native mfplat (win7) or staging mfplat support and a different GPU driver than RADV
  # On Wine 5.2 (up to b1c748c8) and lower, it needs to be toogled on with the WINE_LOW_USER_SPACE_LIMIT=1 envvar
@@ -37,7 +20,7 @@ index 59a9566..00fe2ad 100644
  
  # Workaround for Final Fantasy XIV Launcher 404 error - Thanks @varris1 ! - Fixed by d535df42f665a097ec721b10fb49d7b18f899be9 (4.10)
  # Found to also enable the new launcher (that came with the 5.1 update) to work *with issues*
-@@ -154,14 +154,14 @@ _win10_default="false"
+@@ -167,14 +167,14 @@ _win10_default="false"
  
  # Other misc proton patches and hacks - Notably contains fixes for some native vk games (such as Doom Eternal) as well as Rockstar launcher
  # Also enables some winevulkan performance optimizations - https://github.com/Joshua-Ashton/proton-wine/tree/winevulkan-opt (fs hack) - https://github.com/Joshua-Ashton/wine/commits/winevulkan-opt-mainline (no fs hack)
@@ -55,31 +38,23 @@ index 59a9566..00fe2ad 100644
  # Automatically update community-patches from git - set to false if you don't want this behaviour, useful for example if you have your own fork.
  _community_patches_auto_update="true"
 diff --git a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
-index 1391778..790f854 100644
+index 1391778..ca703ec 100644
 --- a/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
 +++ b/wine-tkg-git/wine-tkg-profiles/advanced-customization.cfg
-@@ -267,14 +267,14 @@ _fsync_futex2="true"
- #### USER PATCHES - See README in ./wine-tkg-userpatches dir for instructions ####
-
- # Userpatches variable below must be set to true to enable userpatches support.
--_user_patches="true"
-+_user_patches="false"
-
+@@ -270,7 +270,7 @@ _fsync_futex2="true"
+ _user_patches="true"
+ 
  # Apply all user patches without confirmation - !!! NOT RECOMMENDED !!!
- _user_patches_no_confirm="false"
-
+-_user_patches_no_confirm="false"
++_user_patches_no_confirm="true"
+ 
  # Set to "false" to prompt about all non-critical hotfix patches at build time, or "ignore" to ignore all non-critical hotfix patches without confirmation
  # Default ("true") will apply all non-critical hotfix patches without confirmation
--_hotfixes_no_confirm="true"
-+_hotfixes_no_confirm="ignore"
- # Set to false to disable staging mfplat restoration in case a hotfix is available and _hotfixes_no_confirm is set to "true"
- _hotfixansw_staging_mfplat=""
- # Set to false to disable staging pulseaudio restoration in case a hotfix is available and _hotfixes_no_confirm is set to "true"
 diff --git a/wine-tkg-git/wine-tkg-scripts/prepare.sh b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-index e56fd33..959abbe 100644
+index 8567540..4198821 100644
 --- a/wine-tkg-git/wine-tkg-scripts/prepare.sh
 +++ b/wine-tkg-git/wine-tkg-scripts/prepare.sh
-@@ -786,6 +786,10 @@ _prepare() {
+@@ -789,6 +789,10 @@ _prepare() {
  
  	if [ "$_unfrog" != "true" ]; then
  	  source "$_where"/wine-tkg-patches/reverts
@@ -90,5 +65,3 @@ index e56fd33..959abbe 100644
  	fi
  
  	_commitmsg="01-reverts" _committer
--- 
-2.35.1
