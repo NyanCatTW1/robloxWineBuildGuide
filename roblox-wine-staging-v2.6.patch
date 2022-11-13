@@ -16,7 +16,7 @@ index b48b74a..41d45d6 100644
  # staging commit or version tag if you want to use a specific staging version. Can use e.g. "7cfceb7", "v3.16" or "v4.0"
  # Leave empty to use latest master - https://github.com/wine-staging/wine-staging/commits/master
 -_staging_version=""
-+_staging_version="v7.19"
++_staging_version="49ed7ae4a001a5d84141f65064081cce3c136137"
  
  # fastsync - disable at runtime with WINE_DISABLE_FAST_SYNC=1 envvar - Set to true to enable winesync/fastsync support - https://repo.or.cz/wine/zf.git/shortlog/refs/heads/fastsync4
  # !! on plain: Disables esync / fsync support !!
