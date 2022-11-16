@@ -55,6 +55,15 @@ Make sure to follow the rules and ask your question in one of the help channels.
 <details open>
 <summary>Click to fold/unfold</summary>
 
+## Note to Arch Linux users
+[wine-tkg-roblox](https://aur.archlinux.org/packages/wine-tkg-roblox)<sup>AUR</sup> applies the patches automatically and builds wine.
+1. **Clone the wine-tkg-roblox git repository**:
+`git clone https://aur.archlinux.org/wine-tkg-roblox.git`
+2. **Enter the just cloned directory**:
+`cd wine-tkg-roblox`
+3. **Install the patched wine**:
+`makepkg -si`
+ ## If you are not using Arch Linux or are not using the AUR package, follow the guide below
 1. **Clone the wine-tkg-git repository**:  
 `git clone https://github.com/Frogging-Family/wine-tkg-git.git`  
 2. **Enter the just cloned directory**:  
