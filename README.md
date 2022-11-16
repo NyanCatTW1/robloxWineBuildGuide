@@ -63,7 +63,10 @@ Make sure to follow the rules and ask your question in one of the help channels.
 `cd wine-tkg-roblox`
 3. **Install the patched wine**:
 `makepkg -si`
- ## If you are not using Arch Linux or are not using the AUR package, follow the guide below
+ 
+**Or install the [wine-tkg-roblox](https://aur.archlinux.org/packages/wine-tkg-roblox)<sup>AUR</sup> using your preferred AUR package manager**
+ 
+## If you are not using Arch Linux or are not using the AUR package, follow the guide below
 1. **Clone the wine-tkg-git repository**:  
 `git clone https://github.com/Frogging-Family/wine-tkg-git.git`  
 2. **Enter the just cloned directory**:  
