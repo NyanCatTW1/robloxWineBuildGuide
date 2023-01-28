@@ -33,7 +33,7 @@ index b48b74a..a2d088b 100644
  # community patches - add patches (separated by a space) of your choice by name from the community-patches dir - https://github.com/Frogging-Family/community-patches
  # example: _community_patches="amdags.mypatch GNUTLShack.mypatch"
 -_community_patches=""
-+_community_patches="0002-proton_LFH.mypatch roblox_mouse_fix.mypatch"
++_community_patches="0002-proton_LFH-staging.mypatch roblox_mouse_fix.mypatch"
  
  # Automatically update community-patches from git - set to false if you don't want this behaviour, useful for example if you have your own fork.
  _community_patches_auto_update="true"
