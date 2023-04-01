@@ -56,6 +56,8 @@ Make sure to follow the rules and ask your question in one of the help channels.
 <summary>Click to fold/unfold</summary>
 
 ## Note to Arch Linux users
+ **"it is not really the most up to date" -Package Maintainer**
+ 
 [wine-tkg-roblox](https://aur.archlinux.org/packages/wine-tkg-roblox)<sup>AUR</sup> applies the patches automatically and builds wine.
 1. **Clone the wine-tkg-roblox git repository**:
 `git clone https://aur.archlinux.org/wine-tkg-roblox.git`
